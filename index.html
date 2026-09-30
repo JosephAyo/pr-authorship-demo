@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A research study exploring how people perceive the authorship of pull-request descriptions.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Authorship Study · Pull-request descriptions</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#welcome" aria-label="Authorship Study home"><span class="brand-icon" aria-hidden="true">⟨/⟩</span><span>Authorship<span class="brand-light"> / Study</span></span></a>
+    <span class="status"><span class="status-dot" aria-hidden="true"></span>Synthetic demo · Nothing submitted</span>
+  </header>
+
+  <main id="main">
+    <section id="welcome" class="page" aria-labelledby="welcome-title">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span aria-hidden="true"></span> Software engineering research</p>
+          <h1 id="welcome-title">A description.<br>A first impression.<br><em>Your perspective.</em></h1>
+          <p class="hero-intro">How do we perceive the writing behind a pull request? Help us explore whether a description feels human-written or AI-generated.</p>
+          <a class="button primary" href="#assessment">Try the demo <span aria-hidden="true">↗</span></a>
+          <p class="quiet hero-note">Explore three fictional examples. No real study data or submissions.</p>
+        </div>
+        <aside class="illustration" aria-label="An illustration of a pull-request description, with no study content">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="document-card" aria-hidden="true">
+            <div class="document-top"><span class="document-symbol">⑂</span><span>Pull-request description</span><span class="document-dots">···</span></div>
+            <div class="skeleton skeleton-heading"></div>
+            <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton short"></div>
+            <div class="document-rule"></div>
+            <div class="skeleton medium"></div><div class="skeleton"></div><div class="skeleton short"></div>
+            <div class="document-bottom"><span class="tiny-dot"></span> A closer look at how we read</div>
+          </div>
+          <div class="perspective-tag" aria-hidden="true"><span>↳</span> What do you notice?</div>
+          <p class="illustration-caption">The words are the starting point.<br>Your judgment is the perspective.</p>
+        </aside>
+      </div>
+
+      <section class="how-section" aria-labelledby="how-title">
+        <div class="section-heading"><p class="eyebrow">The process</p><h2 id="how-title">Read. Reflect. Share your judgment.</h2><p>When the study opens, you’ll consider each description on its own.</p></div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><h3>Read a description</h3><p>Take a moment to read the pull-request description. Focus on the writing in front of you.</p></article>
+          <article class="step"><span class="step-number">02</span><h3>Make a judgment</h3><p>Choose human-written, AI-generated, or not sure. If you choose an author type, indicate your confidence.</p></article>
+          <article class="step"><span class="step-number">03</span><h3>Tell us what stood out</h3><p>Optionally explain what informed your choice. Your reasoning matters, including when you’re unsure.</p></article>
+        </div>
+      </section>
+      <aside class="reassurance"><span class="reassurance-icon" aria-hidden="true">✳</span><div><h2>Uncertainty is part of the picture.</h2><p>This isn’t a test of your expertise. “Not sure” is a valid judgment.</p></div></aside>
+      <section class="questions" aria-labelledby="questions-title">
+        <h2 id="questions-title">Before you begin</h2>
+        <details><summary>What will I be asked to do?</summary><p>Read individual pull-request descriptions, judge their likely authorship, and give a short reason. Please make independent judgments and don’t search for the original pull requests.</p></details>
+        <details><summary>Is the study open yet?</summary><p>Not yet. This demo uses three fictional, AI-created examples to test the interface, not measure authorship accuracy. Participation and consent details will be added before the real study opens.</p></details>
+        <details><summary>Does this preview save anything?</summary><p>Demo answers stay in this tab’s memory until you reload or close it. You can download a labeled demo JSON file at the end. Nothing is submitted; there are no analytics, cookies, or browser storage. Hosting providers may separately keep access logs.</p></details>
+      </section>
+    </section>
+
+    <section id="assessment" class="page assessment-page" aria-labelledby="assessment-title" hidden>
+      <a href="#welcome" class="back-link">← Back to overview</a>
+      <div class="assessment-heading"><div><p class="eyebrow">Individual assessment</p><h1 id="assessment-title" tabindex="-1">Your reading. Your judgment.</h1></div><span class="preview-label">Synthetic data only</span></div>
+      <p class="demo-notice">Demo mode: these examples are fictional and AI-created. Try any judgments to explore the workflow. Answers disappear on reload.</p>
+      <div id="demo-workspace">
+      <div class="demo-progress"><label for="progress" id="progress-label">0 of 3 saved</label><progress id="progress" value="0" max="3"></progress></div>
+      <nav id="items" class="item-nav" aria-label="Demo descriptions"></nav>
+      <div class="assessment-layout">
+        <section class="reading-panel" aria-labelledby="description-title">
+          <div class="panel-heading"><h2 id="description-title">Pull-request description</h2><span id="item-count"></span></div>
+          <article id="description" class="demo-description" tabindex="-1"></article>
+        </section>
+        <section class="judgment-panel" aria-labelledby="judgment-title">
+          <p class="eyebrow">Your perspective</p><h2 id="judgment-title">Who do you think wrote this?</h2><p class="quiet">Try a judgment. You can also explain what stood out.</p>
+          <fieldset><legend>Authorship judgment</legend>
+            <label class="choice"><input type="radio" name="authorship" value="human"> Human-written</label>
+            <label class="choice"><input type="radio" name="authorship" value="ai"> AI-generated</label>
+            <label class="choice"><input type="radio" name="authorship" value="unsure"> Not sure</label>
+            <label class="field-label" for="confidence">How confident are you?</label><select id="confidence"><option value="">Choose confidence</option><option value="1">1 — Guessing</option><option value="2">2 — Low</option><option value="3">3 — Moderate</option><option value="4">4 — High</option><option value="5">5 — Very high</option></select>
+            <p class="field-hint">Not applicable if you choose “Not sure”.</p>
+            <label class="field-label" for="reason">What informed your judgment? (optional)</label><textarea id="reason" rows="4" maxlength="6000" placeholder="What stood out in the writing?"></textarea>
+            <p id="validation" class="validation" role="alert"></p>
+            <button id="save" class="button primary" type="button">Save &amp; continue →</button>
+          </fieldset><p class="field-hint">Choose a judgment and confidence level. Confidence is omitted for “Not sure”. The explanation is optional.</p>
+        </section>
+      </div>
+      <div class="demo-actions"><button id="previous" class="button secondary" type="button">← Previous description</button><span id="save-status" class="quiet" role="status"></span></div>
+      </div>
+      <section id="completion" class="completion" aria-labelledby="completion-title" hidden>
+        <span class="empty-pill">Demo complete</span><h2 id="completion-title" tabindex="-1">Thanks for trying it out.</h2><p>You’ve explored all three fictional descriptions. Nothing has been submitted, and these judgments are not research results.</p>
+        <div id="answer-summary" class="answer-summary"></div>
+        <div class="demo-actions"><button id="review" class="button secondary" type="button">Review answers</button><button id="download" class="button primary" type="button">Download demo JSON ↓</button><button id="restart" class="button secondary" type="button">Start over</button></div>
+        <p class="field-hint">The download is marked DEMO_ONLY. Refreshing clears all answers.</p>
+      </section>
+    </section>
+    <noscript><p class="noscript">Enable JavaScript to try the interactive demo.</p></noscript>
+  </main>
+  <footer class="site-footer"><span>Authorship / Study</span><p>Exploring how we read software contributions.</p><span class="footer-note">Research interface preview</span></footer>
+</body>
+</html>
