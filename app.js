@@ -77,8 +77,7 @@
       } else target.append(node(kind, text));
     }
   }
-  function renderPatch(text) {
-    const target = $("patch");
+  function renderPatch(target, text) {
     target.replaceChildren();
     text.split("\n").forEach((line, i) => {
       // Keep diff file headers neutral; only actual +/- change lines are colored.
@@ -91,13 +90,47 @@
       target.append(node("span", line, "patch-line patch-" + type));
     });
   }
+  function renderPatches(patches) {
+    const target = $("patches");
+    target.replaceChildren();
+    const listed = Array.isArray(patches);
+    const files = listed ? patches : [];
+    $("patch-count").textContent = listed ?
+      `${files.length} ${files.length === 1 ? "file" : "files"} in supplied evidence` :
+      "File count unavailable";
+    if (!files.length) {
+      target.append(node("p", listed ?
+        "No file patches were supplied. This does not establish that the PR changed no files." :
+        "The file list is unavailable in the supplied evidence.", "patch-missing"));
+      return;
+    }
+    files.forEach((patch, i) => {
+      const available = typeof patch?.text === "string" && patch.text.trim().length > 0;
+      const filename = typeof patch?.filename === "string" && patch.filename.trim() ?
+        patch.filename : `Unnamed file ${i + 1}`;
+      const panel = node("details", null, "patch-file");
+      const heading = node("summary");
+      heading.append(node("code", filename, "patch-filename"));
+      if (!available) heading.append(node("span", "Patch unavailable", "patch-unavailable-label"));
+      panel.append(heading);
+      if (available) {
+        const pre = node("pre", null, "patch-view");
+        const code = node("code", null, "patch-code");
+        renderPatch(code, patch.text);
+        pre.append(code);
+        panel.append(pre);
+      } else {
+        panel.append(node("p", "Patch text is unavailable in the supplied evidence for this file.", "patch-missing"));
+      }
+      target.append(panel);
+    });
+  }
   function renderPair() {
     const row = item(), fixture = fixtures.find(x => x.id === row.caseId);
     display("assessment");
     $("context-title").textContent = fixture.title;
-    $("context-summary").textContent = fixture.summary;
     $("issue").textContent = fixture.issue;
-    renderPatch(fixture.patch);
+    renderPatches(fixture.patches);
     $("evidence").open = false;
     renderDescription($("description-a"), fixture.descriptions.find(x => x.id === row.aId));
     renderDescription($("description-b"), fixture.descriptions.find(x => x.id === row.bId));
