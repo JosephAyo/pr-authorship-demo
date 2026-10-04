@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic demo of paired pull-request description preferences. No research responses are collected.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Review perspective · Paired-description demo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="fixtures.js" defer></script>
+  <script src="core.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><span class="brand">Review <span>perspective</span></span><span class="badge">SYNTHETIC DEMO · NOTHING SUBMITTED</span></header>
+  <main id="main">
+    <section id="welcome" aria-labelledby="welcome-title">
+      <div class="hero">
+        <p class="eyebrow">Pull-request descriptions / Preference-first pilot</p>
+        <h1 id="welcome-title">One change.<br>Two descriptions.<br><em>Your perspective.</em></h1>
+        <p class="lead">Which description would better help you understand and review the change? Compare the writing, inspect the shared context, and explain your choice.</p>
+        <p class="demo-notice">This is an interface demo, not a study session. All five example pairs and their supporting context are fictional and AI-created. There is no correct answer or human/AI source key.</p>
+      </div>
+      <div class="steps">
+        <section><p class="step-number">01</p><h2>Read the same change</h2><p>See descriptions A and B alongside the same PR title, issue, and patch. A wider screen makes comparison easier.</p></section>
+        <section><p class="step-number">02</p><h2>Choose, or be unsure</h2><p>Click a description card, or choose Not sure. You can distinguish no clear preference from not having enough information.</p></section>
+        <section><p class="step-number">03</p><h2>Explain your perspective</h2><p>A short reason is required. You can review your demo answers before downloading an optional test file.</p></section>
+      </div>
+      <section class="setup" aria-labelledby="setup-title">
+        <div><p class="eyebrow">Demo setup</p><h2 id="setup-title">Try the comparison</h2><p>These background fields illustrate the proposed workflow. Use fictional answers; do not enter names or personal details.</p><p class="small">No accounts, server submissions, analytics, or browser storage. Reloading or closing the tab clears all answers.</p></div>
+        <div class="setup-fields">
+          <label for="experience">Experience reviewing pull requests</label>
+          <select id="experience"><option value="">Choose a demo response</option><option value="none">None yet</option><option value="occasional">Occasional</option><option value="regular">Regular</option><option value="prefer_not">Prefer not to say</option></select>
+          <label for="familiarity">Familiarity with the project or cases</label>
+          <select id="familiarity"><option value="">Choose a demo response</option><option value="none">None</option><option value="project">Know the project, not these cases</option><option value="case">Have seen a case or description</option><option value="prefer_not">Prefer not to say</option></select>
+          <p id="setup-error" class="error" role="alert"></p>
+          <button id="start" class="button primary" type="button">Start the five-pair demo →</button>
+        </div>
+      </section>
+      <details class="faq"><summary>What is this demo testing?</summary><p>The comparison layout, choice validation, uncertainty, explanations, navigation, and a labeled JSON export. It does not load real PRs, accept frozen packets, or test the study's findings. There is no live response collection or production finalization/locking.</p></details>
+      <details class="faq"><summary>Will I be asked to guess authorship?</summary><p>No. This version focuses on which description you find more helpful. It does not ask who wrote it or score your judgment.</p></details>
+    </section>
+
+    <section id="assessment" aria-labelledby="assessment-title" hidden>
+      <button id="overview" class="text-button" type="button">← Demo overview</button>
+      <div class="page-heading"><div><p class="eyebrow">Paired comparison</p><h1 id="assessment-title" tabindex="-1">Which would help you review?</h1></div><span class="badge">FIVE FICTIONAL CHANGES</span></div>
+      <p class="small">Synthetic examples only. No answers are submitted. Please do not include personal information in your explanation.</p>
+      <div class="progress-row"><label id="progress-label" for="progress">0 of 5 answers saved</label><progress id="progress" value="0" max="5"></progress></div>
+      <nav id="case-nav" class="case-nav" aria-label="Demo comparisons"></nav>
+      <section class="shared-context" aria-labelledby="context-title"><div class="context-heading"><span class="eyebrow">PR title · Shared by A and B</span><h2 id="context-title"></h2></div>
+        <details id="evidence"><summary>Inspect the shared issue and file patches</summary><h3>Issue</h3><p id="issue"></p><h3>File patches</h3><p id="patch-count" class="small"></p><div id="patches"></div><p class="small">Fictional supporting evidence, not a verified reference answer.</p></details>
+      </section>
+      <p class="narrow-note">A and B are stacked on this screen. Both use the same styling and shared context.</p>
+      <fieldset class="preference-options" aria-describedby="choice-hint">
+        <legend id="question">Which description would better help you understand and review this change?</legend>
+        <p id="choice-hint" class="small">Click either card, or choose Not sure below (required). This selects your choice without saving or moving on. Keyboard: Tab to the choices, use arrow keys to switch, or Space to select.</p>
+        <div class="pair-grid">
+          <article id="card-a" class="description-panel" aria-labelledby="a-title">
+            <label class="panel-heading"><input class="choice-input" type="radio" name="preference" value="A" aria-labelledby="a-title"><span id="a-title" class="panel-title">Description A</span><span class="selection-label" aria-hidden="true">Selected</span><span class="selection-mark" aria-hidden="true">✓</span></label>
+            <div id="description-a" class="description-body"></div>
+          </article>
+          <article id="card-b" class="description-panel" aria-labelledby="b-title">
+            <label class="panel-heading"><input class="choice-input" type="radio" name="preference" value="B" aria-labelledby="b-title"><span id="b-title" class="panel-title">Description B</span><span class="selection-label" aria-hidden="true">Selected</span><span class="selection-mark" aria-hidden="true">✓</span></label>
+            <div id="description-b" class="description-body"></div>
+          </article>
+        </div>
+        <label id="not-sure" class="uncertain-option"><input class="choice-input" type="radio" name="preference" value="unsure" aria-labelledby="not-sure-title"><span id="not-sure-title">Not sure</span><span class="selection-label" aria-hidden="true">Selected</span><span class="selection-mark" aria-hidden="true">✓</span></label>
+      </fieldset>
+      <section class="judgment" aria-labelledby="reason-title">
+        <p class="eyebrow">Your perspective</p><h2 id="reason-title">Explain your choice</h2>
+        <div id="uncertainty-field" hidden><label for="uncertainty">What does “Not sure” mean here? (required)</label><select id="uncertainty" disabled><option value="">Choose a reason for uncertainty</option><option value="no_clear_preference">No clear preference</option><option value="insufficient_information">Insufficient information</option></select></div>
+        <label for="reason">What informed your choice? (required)</label>
+        <p id="reason-hint" class="small">If you are not sure, explain what is unclear or missing. A short explanation is enough.</p>
+        <textarea id="reason" rows="4" maxlength="6000" aria-describedby="reason-hint" placeholder="Explain in your own words."></textarea>
+        <p id="validation" class="error" role="alert"></p>
+        <div class="actions"><button id="previous" class="button secondary" type="button">← Previous pair</button><button id="save" class="button primary" type="button">Save demo answer &amp; continue →</button></div>
+        <p id="save-status" class="small" role="status"></p><p class="small">Saved means held in this tab's memory, not sent to a server. You can change answers before downloading.</p>
+      </section>
+    </section>
+
+    <section id="completion" aria-labelledby="completion-title" hidden>
+      <p class="eyebrow">Demo complete</p><h1 id="completion-title" tabindex="-1">Your comparisons,<br>in one place.</h1>
+      <p class="lead">Five fictional pairs explored. Nothing was submitted, and these answers are not research results.</p>
+      <div id="answer-summary"></div>
+      <div class="actions"><button id="review" class="button secondary" type="button">Review / edit answers</button><button id="download" class="button primary" type="button">Download demo JSON ↓</button><button id="restart" class="button secondary" type="button">Start over</button></div>
+      <p id="download-status" role="status" class="small"></p>
+      <p class="small">The optional file is marked DEMO_ONLY. It includes synthetic case identifiers, the demo seed and form, your demo background choices, and your explanations. It is saved only when you request it; do not use it as participant data.</p>
+    </section>
+    <noscript><p class="demo-notice">JavaScript is required for this demo. No data has been collected.</p></noscript>
+  </main>
+  <footer><span>Review perspective / Preference v2</span><span>Team-review demo · Not a frozen study instrument</span></footer>
+</body>
+</html>
