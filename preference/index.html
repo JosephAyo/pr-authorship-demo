@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="fixtures.js" defer></script>
   <script src="core.js" defer></script>
+  <script src="rich-content.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -49,7 +50,7 @@
       <div class="progress-row"><label id="progress-label" for="progress">0 of 5 answers saved</label><progress id="progress" value="0" max="5"></progress></div>
       <nav id="case-nav" class="case-nav" aria-label="Demo comparisons"></nav>
       <section class="shared-context" aria-labelledby="context-title"><div class="context-heading"><span class="eyebrow">PR title · Shared by A and B</span><h2 id="context-title"></h2></div>
-        <details id="evidence"><summary>Inspect the shared issue and file patches</summary><h3>Issue</h3><p id="issue"></p><h3>File patches</h3><p id="patch-count" class="small"></p><div id="patches"></div><p class="small">Fictional supporting evidence, not a verified reference answer.</p></details>
+        <details id="evidence"><summary>Inspect the shared issue, screenshots, examples, and patches</summary><h3>Issue</h3><div id="issue" class="rich-content"></div><div id="examples" hidden></div><h3>File patches</h3><p id="patch-count" class="small"></p><div id="patches"></div><p class="small">Fictional supporting evidence, not a verified reference answer.</p></details>
       </section>
       <p class="narrow-note">A and B are stacked on this screen. Both use the same styling and shared context.</p>
       <fieldset class="preference-options" aria-describedby="choice-hint">
@@ -90,5 +91,10 @@
     <noscript><p class="demo-notice">JavaScript is required for this demo. No data has been collected.</p></noscript>
   </main>
   <footer><span>Review perspective / Preference v2</span><span>Team-review demo · Not a frozen study instrument</span></footer>
+  <dialog id="image-dialog" aria-labelledby="zoom-title">
+    <div class="zoom-toolbar"><h2 id="zoom-title">Screenshot</h2><button id="close-image" class="button secondary" type="button" autofocus>Close screenshot</button></div>
+    <label class="zoom-toggle"><input id="zoom-original" type="checkbox"> Show original size (scroll to inspect)</label>
+    <div class="zoom-viewport" tabindex="0" role="region" aria-label="Enlarged screenshot"><img id="zoom-image" alt=""></div><p id="zoom-caption"></p>
+  </dialog>
 </body>
 </html>

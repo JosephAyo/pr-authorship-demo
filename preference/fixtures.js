@@ -41,6 +41,31 @@
         { id: "DEMO-05-v", blocks: [["h3", "Prevent blank entries in the collection list"], ["p", "Spaces-only names produced indistinguishable blank rows in the sidebar. Stop collection creation and ask for a name when the input is blank. Nonblank names keep their existing handling."]] }
       ] }
   ];
+  // Synthetic display coverage, not additional research cases or source evidence.
+  const screenshot = { src: "assets/demo-export.svg", alt: "Fictional export dialog showing the default folder instead of the previously selected folder", caption: "Synthetic illustration of the reported folder reset." };
+  fixtures[0].issueBlocks = [
+    ["p", fixtures[0].issue],
+    ["h4", "Steps to reproduce"],
+    ["ol", ["Export a collection to /demo/reports.", "Open the export dialog again.", ["Observe the folder field: ", ["code", "/demo/default"], "."]]],
+    ["blockquote", ["Expected: ", ["strong", "keep the previous folder"], ", provided it still exists."]],
+    ["image", screenshot],
+    ["pre", "ExportDialog.open()\n  rememberedFolder = /demo/reports\n  displayedFolder = /demo/default\n"],
+    ["p", ["The text ", ["code", "<folder>"], " is a literal diagnostic marker, not HTML."]]
+  ];
+  fixtures[0].examples = [
+    { label: "Example file: sample-records.bib (synthetic)", text: "@article{demo,\n  title = {A fictional {nested} title},\n  author = {Example, A.},\n  year = {2026}\n}\n" },
+    { label: "Example file: export-settings.txt (synthetic)", text: "defaultFolder=/demo/default\nlastExportFolder=/demo/reports\nliteralMarker=<folder>\n" }
+  ];
+  fixtures[0].descriptions[0].blocks.push(
+    ["image", screenshot],
+    ["tasks", [{ checked: true, text: "Add a folder fallback." }, { checked: false, text: ["Check a folder with ", ["em", "spaces"], " in its name."] }]],
+    ["hr"],
+    ["p", [["del", "Always use the default folder."], " Preserve the previous choice when available."]]
+  );
+  fixtures[0].descriptions[1].blocks.push(["table", {
+    caption: "Proposed folder handling (synthetic)", headers: ["Saved folder", "Dialog destination"],
+    rows: [["Available", "Saved folder"], ["Missing", "Default folder"]]
+  }]);
   if (typeof module !== "undefined" && module.exports) module.exports = fixtures;
   else root.PreferenceFixtures = fixtures;
 })(typeof globalThis !== "undefined" ? globalThis : this);

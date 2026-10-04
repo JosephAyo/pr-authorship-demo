@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560">
+  <rect width="1000" height="560" fill="#eef1e9"/>
+  <rect x="44" y="44" width="912" height="472" rx="12" fill="#fffefa" stroke="#aebbb0"/>
+  <path d="M44 108H956" stroke="#d5dcd4"/>
+  <g font-family="sans-serif" fill="#243b34">
+    <text x="76" y="86" font-size="22">Fictional file exporter</text>
+    <text x="76" y="158" font-size="18">SYNTHETIC UI EXAMPLE — NOT STUDY EVIDENCE</text>
+    <text x="76" y="224" font-size="26">sample-records.bib</text>
+    <rect x="76" y="262" width="848" height="110" rx="6" fill="#fce9e7"/>
+    <text x="100" y="306" font-size="24" fill="#8b2525">Export folder: /demo/default</text>
+    <text x="100" y="341" font-size="19">Previously selected: /demo/reports</text>
+    <rect x="76" y="405" width="166" height="60" rx="6" fill="#285b46"/>
+    <text x="111" y="445" font-size="23" fill="white">Choose</text>
+  </g>
+</svg>

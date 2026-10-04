@@ -1,4 +1,29 @@
 :root { color-scheme: light; --paper: #faf9f6; --surface: #fffefa; --ink: #243b34; --muted: #586760; --line: #d5dcd4; --accent: #285b46; --wash: #eef1e9; font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.rich-content { overflow-wrap: anywhere; }
+.description-body h2 { font-size: 21px; }
+.description-body blockquote, .rich-content blockquote { border-left: 3px solid var(--line); margin: 18px 0; padding-left: 16px; }
+.description-body code, .rich-content code { font-family: ui-monospace, Menlo, monospace; font-size: .88em; }
+.content-tasks { list-style: none; padding-left: 0 !important; }
+.content-tasks li { display: flex; align-items: baseline; gap: 10px; }
+.content-tasks input { flex-shrink: 0; }
+.content-table { overflow: auto; max-width: 100%; }
+.content-table table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.content-table th, .content-table td { border: 1px solid var(--line); padding: 9px; text-align: left; }
+.content-table caption { text-align: left; font-weight: 600; padding: 8px 0; }
+.evidence-image { margin: 20px 0; }
+.image-button { display: block; border: 1px solid var(--line); padding: 0; width: 100%; background: var(--surface); cursor: zoom-in; }
+.image-button img { display: block; width: 100%; height: auto; }
+.evidence-image figcaption, .evidence-image > span { display: block; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.asset-unavailable { border: 1px solid #a66b2d; padding: 12px; }
+.example-file { margin: 12px 0; border-top: 1px solid var(--line); }
+#image-dialog { width: min(1100px, 95vw); max-height: 95vh; padding: 20px; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
+#image-dialog::backdrop { background: #14281cbb; }
+.zoom-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.zoom-toolbar h2 { margin: 0; font-size: 20px; }
+.zoom-viewport { max-height: 65vh; overflow: auto; }
+#zoom-image { display: block; max-width: 100%; height: auto; }
+#zoom-image.original-size { max-width: none; }
+#zoom-caption { font-size: 13px; margin: 12px 0 0; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); }
 [hidden] { display: none !important; }

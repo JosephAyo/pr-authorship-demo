@@ -1,7 +1,7 @@
 /* Pure demo logic. Seed/form controls are QA conveniences, not live assignment. */
 (function (root) {
   "use strict";
-  const VERSION = "preference-v2-demo-1";
+  const VERSION = "preference-v2-demo-2";
   function randomGenerator(seed) {
     let state = seed >>> 0;
     return function () {

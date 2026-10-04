@@ -3,6 +3,9 @@
   const core = window.PreferenceCore;
   const fixtures = window.PreferenceFixtures;
   const $ = id => document.getElementById(id);
+  const content = window.PreferenceContent;
+  $("close-image").addEventListener("click", () => $("image-dialog").close());
+  $("zoom-original").addEventListener("change", () => $("zoom-image").classList.toggle("original-size", $("zoom-original").checked));
   const radios = [...document.querySelectorAll('input[name="preference"]')];
   // Native radios retain keyboard/screen-reader behavior. The surrounding card
   // adds a larger pointer target without wrapping readable prose in a button.
@@ -68,14 +71,7 @@
     });
   }
   function renderDescription(target, description) {
-    target.replaceChildren();
-    for (const [kind, text] of description.blocks) {
-      if (kind === "ul") {
-        const list = node("ul");
-        text.forEach(line => list.append(node("li", line)));
-        target.append(list);
-      } else target.append(node(kind, text));
-    }
+    content.blocks(target, description.blocks);
   }
   function renderPatch(target, text) {
     target.replaceChildren();
@@ -129,7 +125,8 @@
     const row = item(), fixture = fixtures.find(x => x.id === row.caseId);
     display("assessment");
     $("context-title").textContent = fixture.title;
-    $("issue").textContent = fixture.issue;
+    content.blocks($("issue"), fixture.issueBlocks || [["p", fixture.issue]]);
+    content.examples($("examples"), fixture.examples);
     renderPatches(fixture.patches);
     $("evidence").open = false;
     renderDescription($("description-a"), fixture.descriptions.find(x => x.id === row.aId));
