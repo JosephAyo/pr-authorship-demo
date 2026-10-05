@@ -8,6 +8,7 @@
   // adds a larger pointer target without wrapping readable prose in a button.
   for (const card of document.querySelectorAll('.description-panel')) {
     card.addEventListener('click', event => {
+      if (event.target.closest('button, a, select, textarea, summary')) return;
       const selection = window.getSelection();
       const selectedText = selection && !selection.isCollapsed &&
         [...Array(selection.rangeCount).keys()].some(i => selection.getRangeAt(i).intersectsNode(card));
@@ -25,6 +26,7 @@
   }
   let session = null, position = 0;
   const drafts = new Map(), saved = new Map();
+  const interactions = window.EvidenceInteractions.create(fixtures.map(x => x.id), () => session !== null && !$("assessment").hidden);
 
   function node(tag, text, className) {
     const el = document.createElement(tag);
@@ -134,6 +136,7 @@
     $("evidence").open = false;
     renderDescription($("description-a"), fixture.descriptions.find(x => x.id === row.aId));
     renderDescription($("description-b"), fixture.descriptions.find(x => x.id === row.bId));
+    interactions.bind(row.caseId, {evidence: $("evidence"), examples: [], patches: [...$("patches").querySelectorAll('details')], images: {}});
     const answer = drafts.get(row.caseId) || saved.get(row.caseId) || { choice: "", uncertainty: null, reason: "" };
     radios.forEach(radio => { radio.checked = radio.value === answer.choice; });
     $("uncertainty").value = answer.uncertainty || "";
@@ -199,6 +202,7 @@
   $("review").addEventListener("click", () => { position = 0; renderPair(); });
   $("download").addEventListener("click", () => {
     const data = core.makeExport(session, [...saved.values()], new Date().toISOString());
+    data.evidenceInteractions = interactions.snapshot();
     const blob = new Blob([JSON.stringify(data, null, 2) + "\n"], { type: "application/json" });
     const url = URL.createObjectURL(blob), link = node("a");
     link.href = url; link.download = "DEMO_ONLY-preference-v2.json";
@@ -209,6 +213,7 @@
   $("restart").addEventListener("click", () => {
     if (!window.confirm("Discard all demo answers in this tab and start over?")) return;
     session = null; position = 0; drafts.clear(); saved.clear();
+    interactions.reset();
     for (const id of ["experience", "familiarity"]) $(id).disabled = false;
     $("experience").value = ""; $("familiarity").value = "";
     $("start").textContent = "Start the five-pair demo →";

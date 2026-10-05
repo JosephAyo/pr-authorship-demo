@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="fixtures.js" defer></script>
   <script src="core.js" defer></script>
+  <script src="interactions.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -28,7 +29,7 @@
         <section><p class="step-number">03</p><h2>Explain your perspective</h2><p>A short reason is required. You can review your demo answers before downloading an optional test file.</p></section>
       </div>
       <section class="setup" aria-labelledby="setup-title">
-        <div><p class="eyebrow">Demo setup</p><h2 id="setup-title">Try the comparison</h2><p>These background fields illustrate the proposed workflow. Use fictional answers; do not enter names or personal details.</p><p class="small">No accounts, server submissions, analytics, or browser storage. Reloading or closing the tab clears all answers.</p></div>
+        <div><p class="eyebrow">Demo setup</p><h2 id="setup-title">Try the comparison</h2><p>These background fields illustrate the proposed workflow. Use fictional answers; do not enter names or personal details.</p><p class="small">No accounts, server submissions, remote analytics, or browser storage. Reloading or closing the tab clears answers and opening counts.</p><p id="interaction-notice" class="small">This demo counts openings of shared evidence and individual file patches per case. Counts stay in this tab and are included in the optional JSON download; nothing is sent to a server. The issue shares the evidence panel, so issue reading is not tracked separately. Opening is not proof of reading.</p></div>
         <div class="setup-fields">
           <label for="experience">Experience reviewing pull requests</label>
           <select id="experience"><option value="">Choose a demo response</option><option value="none">None yet</option><option value="occasional">Occasional</option><option value="regular">Regular</option><option value="prefer_not">Prefer not to say</option></select>
@@ -85,7 +86,7 @@
       <div id="answer-summary"></div>
       <div class="actions"><button id="review" class="button secondary" type="button">Review / edit answers</button><button id="download" class="button primary" type="button">Download demo JSON ↓</button><button id="restart" class="button secondary" type="button">Start over</button></div>
       <p id="download-status" role="status" class="small"></p>
-      <p class="small">The optional file is marked DEMO_ONLY. It includes synthetic case identifiers, the demo seed and form, your demo background choices, and your explanations. It is saved only when you request it; do not use it as participant data.</p>
+      <p class="small">The optional file is marked DEMO_ONLY. It includes synthetic case identifiers, the demo seed and form, your demo background choices, your explanations, and evidence-opening counts. Counts do not establish reading. It is saved only when you request it; do not use it as participant data.</p>
     </section>
     <noscript><p class="demo-notice">JavaScript is required for this demo. No data has been collected.</p></noscript>
   </main>
